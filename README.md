@@ -47,3 +47,23 @@ Jupyter notebooks containing some assignments solved during an internship.
 - Pretrained models ( EfficientNet, ResNet18)
 - Pytorch Lighting module - training, validation and testing steps
 - model callbacks - early stopping, model checkpoint, csv logger
+
+## Assignment 10 - LLM Integration
+- Continued on assignment 9
+- Built a LangChain Agent using gpt-4o-mini
+- Tavily API Tool for Web Search ( information about the plant, passed as context to the LLM Request)
+- Implemented a PlantCareCard , a pydantic BaseModel used for formatting the result
+
+## Assignment 11 - RAG Architecture
+- Continue on assignment 10
+- WebBaseLoader for loading the given URLs 
+- RecursiveCharacterSplitter for splitting in chunks
+- Implemented a vector store using LanceDB
+- Implemented 3 agents for the LLM call using different tools:
+    - One without any tools
+    - One with Tavily API and VectorStore 
+    - One with TavilyAPI
+- Added a new field to the PlantCareCard (Toxicity to animals) 
+- Implemented code for the agents comparison, for 3 different plants
+- The advantage of having a VectorStore was seen in the responses, in the toxicity field
+- Without any tools, gpt-4o-mini didn`t know about some plants being poisonous, whilst the other had relevant information
