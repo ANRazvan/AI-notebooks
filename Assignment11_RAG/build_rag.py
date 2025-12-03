@@ -24,7 +24,7 @@ urls = [
 ]
 
 def build_knowledge_base():
-    print(f"📡 Scrapping {len(urls)} websites...")
+    print(f"Scrapping {len(urls)} websites...")
     
     # WebBaseLoader uses BeautifulSoup to strip HTML tags and get just the text
     loader = WebBaseLoader(urls)
@@ -32,20 +32,20 @@ def build_knowledge_base():
     
     # We split text into chunks of 1000 characters with 200 overlap.
     # This ensures the context isn't cut off in the middle of a sentence.
-    print("✂️ Splitting documents...")
+    print("Splitting documents...")
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200,
         separators=["\n\n", "\n", " ", ""]
     )
     chunks = text_splitter.split_documents(docs)
-    print(f"🧩 Created {len(chunks)} text chunks.")
+    print(f"Created {len(chunks)} text chunks.")
 
     # We create a local folder 'lancedb_data' to store the vectors
     db = lancedb.connect("./lancedb_data")
     
     # This sends text to OpenAI to get numbers (embeddings) and saves them to LanceDB
-    print("💾 Embedding and saving to LanceDB...")
+    print("Embedding and saving to LanceDB...")
     table_name = "plant_care_guides"
     
     # If table exists, we overwrite it for this demo to keep it clean
@@ -61,7 +61,7 @@ def build_knowledge_base():
         table_name=table_name
     )
     
-    print("✅ Success! Knowledge base built at './lancedb_data'")
+    print("Success! Knowledge base built at './lancedb_data'")
 
 if __name__ == "__main__":
     build_knowledge_base()
